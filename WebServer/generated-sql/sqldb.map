@@ -1,0 +1,3 @@
+# Sqlfile -> Database map
+cn_topspace.sql=cn_topspace
+us_topspace.sql=us_topspace

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="cn_topspace" defaultIdMethod="native" defaultPhpNamingMethod="underscore">
+  <table name="COMMENT" idMethod="native" phpName="Comment">
+    <column name="news_id" phpName="NewsId" type="INTEGER" size="32" primaryKey="true" required="true"/>
+    <column name="comment_id" phpName="CommentId" type="INTEGER" size="32" primaryKey="true" required="true"/>
+    <column name="content" phpName="Content" type="VARCHAR" size="255" required="true"/>
+    <column name="date" phpName="Date" type="TIMESTAMP"/>
+    <column name="username" phpName="Username" type="VARCHAR" size="64" required="true"/>
+    <index name="comment_fk_1">
+      <index-column name="username"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+  <table name="GAME" idMethod="native" phpName="Game">
+    <column name="game_id" phpName="GameId" type="INTEGER" size="32" primaryKey="true" required="true"/>
+    <column name="team1_id" phpName="Team1Id" type="INTEGER" size="10" required="true"/>
+    <column name="team2_id" phpName="Team2Id" type="INTEGER" size="10" required="true"/>
+    <column name="team1_score" phpName="Team1Score" type="INTEGER" size="5"/>
+    <column name="team2_score" phpName="Team2Score" type="INTEGER" size="5"/>
+    <column name="date" phpName="Date" type="DATE"/>
+    <column name="time" phpName="Time" type="TIME"/>
+    <column name="location" phpName="Location" type="VARCHAR" size="255"/>
+    <index name="game_fk_1">
+      <index-column name="team1_id"/>
+    </index>
+    <index name="game_fk_2">
+      <index-column name="team2_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+  <table name="NEWS" idMethod="native" phpName="News">
+    <column name="news_id" phpName="NewsId" type="INTEGER" size="32" primaryKey="true" required="true"/>
+    <column name="title" phpName="Title" type="VARCHAR" size="128" required="true"/>
+    <column name="content" phpName="Content" type="LONGVARCHAR" required="true"/>
+    <column name="date" phpName="Date" type="TIMESTAMP" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+  <table name="PLAYER_IN_NEWS" idMethod="native" phpName="PlayerInNews">
+    <column name="news_id" phpName="NewsId" type="INTEGER" size="32" primaryKey="true" required="true"/>
+    <column name="player_id" phpName="PlayerId" type="INTEGER" size="32" primaryKey="true" required="true"/>
+    <index name="pin_fk_2">
+      <index-column name="player_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+  <table name="ROASTER" idMethod="native" phpName="Roaster">
+    <column name="player_id" phpName="PlayerId" type="INTEGER" size="32" primaryKey="true" required="true"/>
+    <column name="first_name" phpName="FirstName" type="VARCHAR" size="32" required="true"/>
+    <column name="last_name" phpName="LastName" type="VARCHAR" size="32" required="true"/>
+    <column name="gender" phpName="Gender" type="VARCHAR" size="6"/>
+    <column name="weight" phpName="Weight" type="DECIMAL" size="6" scale="2"/>
+    <column name="height" phpName="Height" type="DECIMAL" size="6" scale="2"/>
+    <column name="born_date" phpName="BornDate" type="TIMESTAMP"/>
+    <column name="born_place" phpName="BornPlace" type="VARCHAR" size="255"/>
+    <column name="college" phpName="College" type="VARCHAR" size="128"/>
+    <column name="team_id" phpName="TeamId" type="INTEGER" size="10"/>
+    <index name="roaster_fk">
+      <index-column name="team_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+  <table name="SUBSCRIBE" idMethod="native" phpName="Subscribe">
+    <column name="username" phpName="Username" type="VARCHAR" size="64" primaryKey="true" required="true"/>
+    <column name="team_id" phpName="TeamId" type="INTEGER" size="10" primaryKey="true" required="true"/>
+    <index name="subscribe_fk_2">
+      <index-column name="team_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+  <table name="TEAM" idMethod="native" phpName="Team">
+    <column name="team_id" phpName="TeamId" type="INTEGER" size="10" primaryKey="true" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="64" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+  <table name="TEAM_IN_NEWS" idMethod="native" phpName="TeamInNews">
+    <column name="news_id" phpName="NewsId" type="INTEGER" size="32" primaryKey="true" required="true"/>
+    <column name="team_id" phpName="TeamId" type="INTEGER" size="10" primaryKey="true" required="true"/>
+    <index name="tin_fk_2">
+      <index-column name="team_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+  <table name="USER" idMethod="native" phpName="User">
+    <column name="username" phpName="Username" type="VARCHAR" size="64" primaryKey="true" required="true"/>
+    <column name="password" phpName="Password" type="VARCHAR" size="64" required="true"/>
+    <column name="email" phpName="Email" type="VARCHAR" size="64" required="true"/>
+    <column name="first_name" phpName="FirstName" type="VARCHAR" size="32"/>
+    <column name="last_name" phpName="LastName" type="VARCHAR" size="32"/>
+    <column name="gender" phpName="Gender" type="VARCHAR" size="6"/>
+    <column name="address" phpName="Address" type="VARCHAR" size="255"/>
+    <column name="phone" phpName="Phone" type="VARCHAR" size="32"/>
+    <column name="token" phpName="Token" type="VARCHAR" size="512"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="MyISAM"/>
+    </vendor>
+  </table>
+</database>
